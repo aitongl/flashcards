@@ -1,0 +1,30 @@
+{% extends "flashcards/base.html" %}
+{% block content %}
+<div>
+    <h3>{{ set.title }}</h3>
+    <a href="{% url 'allSets' %}">Back to all sets</a>
+</div>
+<div class="card-container ">
+{% for card in flashcards %}
+    <div class="card">
+        <div class="card-body" class="card-inner" onclick="toggleCardFlip(this)">
+            <div class="card-front visible" class="card-title">
+                <h3>{{ card.front }}</h3>
+            </div>
+            <div class="card-back hidden" class="card-title">
+                <h3>{{ card.back }}</h3>
+            </div> 
+        </div>
+    </div>
+
+{% endfor %}
+</div>
+
+<div class="newCard">
+    <form method="post" action="{% url 'editSets' set.id %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input id="addCardBtn"  type="submit" value="Add Card">
+    </form>
+</div>
+{% endblock %}

@@ -1,11 +1,25 @@
 {% extends "flashcards/base.html" %}
 {% block content %}
-<h2>Add a new set</h2>
-<form method="post" action="{% url 'add_set' %}">
-    {% csrf_token %}
-    {{ forms.as_p }}
-    <button type="submit">Add set</button>
-</form>
+<h2>Current sets</h2>
+<div class="card-container ">
+{% for set in sets %}
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{ set.title }}</h5>
+      <p class="card-text">{{set.description}}</p>
+      <a href="{% url 'view_set' set.id %}">View Set</a>
+    </div>
+  </div>
 
+{% endfor %}
+</div>
+<div class="newset">
+    <h2>Add a new set</h2>
+    <form method="post" action="{% url 'add_set' %}">
+        {% csrf_token %}
+        {{ forms.as_p }}
+        <button id="addSetBtn" type="submit">Add set</button>
+    </form>
+</div>
 {% endblock %}
 

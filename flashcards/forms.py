@@ -7,8 +7,8 @@ class FlashcardSetForm(forms.ModelForm):
         model = FlashcardSet
         fields = ('title', 'description')
         widgets = {
-            'title': forms.Textarea(attrs={'id': 'set-title', 'class': 'form-control'}),
-            'description': forms.Textarea(attrs={'id': 'set-description', 'class': 'form-control', 'rows':3})
+            'title': forms.Textarea(attrs={'id': 'set-title', 'class': 'form-control', 'placeholder': "Enter the title of the set"}),
+            'description': forms.Textarea(attrs={'id': 'set-description', 'class': 'form-control', 'rows':3, 'placeholder': "Description for the set"})
         }
         labels = {
             'title': 'Title',
